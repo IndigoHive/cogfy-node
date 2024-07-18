@@ -19,4 +19,10 @@ import { Cogfy } from 'cogfy'
 const cogfy = new Cogfy({
   apiKey: process.env.COGFY_API_KEY
 })
+
+async function main () {
+  const collections = await cogfy.collections.list()
+}
+
+main()
 ```
