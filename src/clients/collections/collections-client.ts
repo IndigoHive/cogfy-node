@@ -1,11 +1,29 @@
 import { AxiosInstance } from 'axios'
-import { ListCollectionsQuery, ListCollectionsResult } from './types'
+import { GetCollectionByIdResult, ListCollectionsQuery, ListCollectionsResult } from './types'
 
 export class CollectionsClient {
   protected axios: AxiosInstance
 
   constructor (options: { axios: AxiosInstance }) {
     this.axios = options.axios
+  }
+
+  /**
+   * Calls the `GET https://api.cogfy.com/collections/:collectionId` endpoint
+   * @param collectionId The collection id.
+   * @param options The request options.
+   * @returns The response body.
+   */
+  async getById (
+    collectionId: string,
+    options?: { signal?: AbortSignal }
+  ): Promise<GetCollectionByIdResult> {
+    const response = await this.axios.get<GetCollectionByIdResult>(
+      `/collections/${collectionId}`,
+      { signal: options?.signal }
+    )
+
+    return response.data
   }
 
   /**
