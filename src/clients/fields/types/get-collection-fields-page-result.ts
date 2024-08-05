@@ -1,6 +1,4 @@
-import { Page } from '../../../types'
-
-type GetCollectionFieldsResult = {
+export type GetCollectionFieldsResult = {
   id: string
   name: string
   type: string
@@ -9,5 +7,3 @@ type GetCollectionFieldsResult = {
   operation: string | null
   operationConfig: any | null
 }
-
-export type GetCollectionFieldsResultPage = Page<GetCollectionFieldsResult>

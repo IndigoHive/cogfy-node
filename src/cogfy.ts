@@ -12,7 +12,7 @@ export class Cogfy {
   collections: CollectionsClient
   fields: FieldsClient
 
-  constructor (options: CogfyOptions) {
+  constructor (options: CogfyOptions = {}) {
     this._options = options
     this._axios = axios.create({
       baseURL: 'https://api.cogfy.com',
