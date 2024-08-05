@@ -1,6 +1,8 @@
+import { ChatMessageRole } from '../../../types'
+
 type ChatMessageResult = {
   id: string,
-  role: 'system' | 'user' | 'assistant' | 'tool',
+  role: ChatMessageRole
   content: string
 }
 

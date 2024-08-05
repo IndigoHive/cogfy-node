@@ -1,6 +1,8 @@
+import { ChatMessageRole } from '../../../types'
+
 export type ListChatMessagesResult = {
   data: {
-    role: 'system' | 'user' | 'assistant' | 'tool'
+    role: ChatMessageRole
     content: string | null
   },
   pageNumber: number,
