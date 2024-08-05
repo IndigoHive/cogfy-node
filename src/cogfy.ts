@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios'
-import { CollectionsClient } from './clients'
+import { CollectionsClient, FieldsClient } from './clients'
 
 export type CogfyOptions = {
   apiKey?: string
@@ -10,6 +10,7 @@ export class Cogfy {
   private _options: CogfyOptions
 
   collections: CollectionsClient
+  fields: FieldsClient
 
   constructor (options: CogfyOptions) {
     this._options = options
@@ -21,5 +22,6 @@ export class Cogfy {
     })
 
     this.collections = new CollectionsClient({ axios: this._axios })
+    this.fields = new FieldsClient({ axios: this._axios })
   }
 }
