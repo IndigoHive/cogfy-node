@@ -1,10 +1,10 @@
 import { AxiosInstance } from 'axios'
-import { CreateChatCommand, CreateChatResult, ListCollectionChatsQuery, ListCollectionChatsResult } from './types'
+import { CreateChatCommand, CreateChatResult, ListCollectionChatsQuery, ListCollectionChatsResult } from '../chats'
 
 export class ChatsClient {
   protected axios: AxiosInstance
 
-  constructor (options: { axios: AxiosInstance }) {
+  constructor(options: { axios: AxiosInstance }) {
     this.axios = options.axios
   }
 
