@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from 'vitest'
 import { Cogfy } from '../../cogfy'
-import { GetCollectionFieldsPageResult, GetCollectionFieldsResult } from './types'
+import { GetCollectionFieldsResult } from './types'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
@@ -16,6 +16,7 @@ describe('fields-client', () => {
   describe('getPage GET /collections/:collectionId/fields', () => {
     describe('when the request to endpoint is successful', () => {
       test('should return data', async () => {
+        const collectionId = '1'
         const mockData: GetCollectionFieldsResult = {
           id: '1',
           name: 'name',
@@ -25,19 +26,14 @@ describe('fields-client', () => {
           operation: 'operation',
           operationConfig: {}
         }
-        const mockResponse: GetCollectionFieldsPageResult = {
-          pageNumber: 1,
-          pageSize: 1,
-          totalSize: 1,
-          data: [mockData]
-        }
-
+        const mockResponse: GetCollectionFieldsResult[] = [mockData]
         mock
           .onGet('https://api.cogfy.com/collections/1/fields')
           .reply(200, mockResponse)
 
-        const result = await client.fields.getPage('1', {})
-        expect(result.data).toEqual(mockResponse.data)
+        const result = await client.fields.getPage(collectionId)
+
+        expect(result).toEqual(mockResponse)
       })
     })
   })
