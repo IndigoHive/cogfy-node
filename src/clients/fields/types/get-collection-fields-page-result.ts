@@ -5,5 +5,5 @@ export type GetCollectionFieldsResult = {
   order: number
   data: object | null
   operation: string | null
-  operationConfig: any | null
+  operationConfig: object | null
 }
