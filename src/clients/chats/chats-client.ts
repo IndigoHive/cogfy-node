@@ -4,7 +4,7 @@ import { CreateChatCommand, CreateChatMessageCommand, CreateChatMessageResult, C
 export class ChatsClient {
   protected axios: AxiosInstance
 
-  constructor(options: { axios: AxiosInstance }) {
+  constructor (options: { axios: AxiosInstance }) {
     this.axios = options.axios
   }
 
