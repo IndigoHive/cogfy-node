@@ -1,4 +1,4 @@
-import { DatabaseRecordProperty } from './database-record-property'
+import { DatabaseRecordProperty } from '../../../types'
 
 export type UpdateRecordCommand = {
   properties?: Record<string, DatabaseRecordProperty> | null
