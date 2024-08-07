@@ -56,18 +56,18 @@ export class RecordsClient {
   /**
    * Calls the `GET https://api.cogfy.com/collections/:collectionId/records` endpoint
    * @param collectionId The collection id to get records.
-   * @param query The request query parameters.
+   * @param params The request query parameters.
    * @param options The request options.
    * @returns The response body.
    */
   async list (
     collectionId: string,
-    query: ListRecordsQuery = {},
+    params: ListRecordsQuery = {},
     options?: { signal?: AbortSignal }
   ): Promise<Page<ListRecordsResult>> {
     const response = await this.axios.get(
       `/collections/${collectionId}/records`,
-      { params: query, signal: options?.signal }
+      { params, signal: options?.signal }
     )
 
     return response.data
