@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios'
+import qs from 'qs'
 import { ChatsClient, CollectionsClient, FieldsClient, RecordsClient } from './clients'
 
 export type CogfyOptions = {
@@ -20,6 +21,9 @@ export class Cogfy {
       baseURL: 'https://api.cogfy.com',
       headers: {
         'Api-Key': this._options.apiKey
+      },
+      paramsSerializer: {
+        serialize: params => qs.stringify(params, { arrayFormat: 'repeat' })
       }
     })
 
