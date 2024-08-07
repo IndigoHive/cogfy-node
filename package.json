@@ -10,7 +10,8 @@
     "build": "tsc",
     "lint": "eslint src",
     "prepublishOnly": "tsc",
-    "test": "vitest --exclude build"
+    "test": "vitest --exclude build",
+    "real:test": "node run build/test.ts"
   },
   "keywords": [],
   "author": "",
