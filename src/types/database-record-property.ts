@@ -1,31 +1,68 @@
-type BaseDatabaseRecordProperty = {
+export type BaseDatabaseRecordProperty = {
   error?: {
-    code?: string | null
-    message?: string
-  }
-  pending?: boolean
-}
-type BooleanDatabaseRecordProperty = BaseDatabaseRecordProperty & {
-  type: 'boolean'
+      code?: string | null;
+      message?: string;
+  };
+  pending?: boolean;
+};
+export type BooleanDatabaseRecordProperty = BaseDatabaseRecordProperty & {
+  type: 'boolean';
   boolean: {
-    value: boolean
-  }
-}
-type ChatDatabaseRecordProperty = BaseDatabaseRecordProperty & {
-  type: 'chat'
-}
-type NumberDatabaseRecordProperty = BaseDatabaseRecordProperty & {
-  type: 'number'
+      value: boolean;
+  };
+};
+export type ChatDatabaseRecordProperty = BaseDatabaseRecordProperty & {
+  type: 'chat';
+};
+export type DateDatabaseRecordProperty = BaseDatabaseRecordProperty & {
+  type: 'date';
+  date: {
+      value: string;
+  };
+};
+export type FileDatabaseRecordProperty = BaseDatabaseRecordProperty & {
+  type: 'file';
+};
+export type JsonDatabaseRecordProperty = BaseDatabaseRecordProperty & {
+  type: 'json';
+  json: {
+      value: unknown;
+  };
+};
+export type NumberDatabaseRecordProperty = BaseDatabaseRecordProperty & {
+  type: 'number';
   number: {
-    value: number
-  }
-}
-
-type TextDatabaseRecordProperty = BaseDatabaseRecordProperty & {
-  type: 'text'
+      value: number;
+  };
+};
+export type ReferenceDatabaseRecordProperty = BaseDatabaseRecordProperty & {
+  type: 'reference';
+};
+export type StopwatchDatabaseRecordProperty = BaseDatabaseRecordProperty & {
+  type: 'stopwatch';
+  stopwatch?: {
+      value?: {
+          startDate?: string | null;
+          elapsed?: number | null;
+      };
+  };
+};
+export type TextDatabaseRecordProperty = BaseDatabaseRecordProperty & {
+  type: 'text';
   text: {
-    value: string
-  }
-}
-
-export type DatabaseRecordProperty = BooleanDatabaseRecordProperty | ChatDatabaseRecordProperty | NumberDatabaseRecordProperty | TextDatabaseRecordProperty
+      value: string;
+  };
+};
+export type VectorDatabaseRecordProperty = BaseDatabaseRecordProperty & {
+  type: 'vector';
+};
+export type WhatsAppDatabaseRecordProperty = BaseDatabaseRecordProperty & {
+  type: 'whatsApp';
+  whatsApp?: {
+      value?: {
+          phoneNumber?: string;
+          chatId?: string;
+      };
+  };
+};
+export type DatabaseRecordProperty = BooleanDatabaseRecordProperty | ChatDatabaseRecordProperty | DateDatabaseRecordProperty | FileDatabaseRecordProperty | JsonDatabaseRecordProperty | NumberDatabaseRecordProperty | ReferenceDatabaseRecordProperty | StopwatchDatabaseRecordProperty | TextDatabaseRecordProperty | VectorDatabaseRecordProperty | WhatsAppDatabaseRecordProperty;
