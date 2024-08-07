@@ -11,13 +11,14 @@
     "lint": "eslint src",
     "prepublishOnly": "tsc",
     "test": "vitest --exclude build",
-    "real:test": "node run build/test.ts"
+    "real:test": "ts-node src/test.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.7.2"
+    "axios": "^1.7.2",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
