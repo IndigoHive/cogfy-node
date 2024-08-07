@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios'
-import { CreateRecordCommand, CreateRecordResult, UpdateRecordCommand, UpdateRecordResult } from './types'
+import { CreateRecordCommand, CreateRecordResult, ListRecordsQuery, ListRecordsResult, UpdateRecordCommand, UpdateRecordResult } from './types'
+import { Page } from '../../types'
 
 export class RecordsClient {
   protected axios: AxiosInstance
@@ -52,4 +53,41 @@ export class RecordsClient {
     return response.data
   }
 
+  /**
+   * Calls the `GET https://api.cogfy.com/collections/:collectionId/records` endpoint
+   * @param collectionId The collection id to get records.
+   * @param query The request query parameters.
+   * @param options The request options.
+   * @returns The response body.
+   */
+  async list (
+    collectionId: string,
+    query: ListRecordsQuery = {},
+    options?: { signal?: AbortSignal }
+  ): Promise<Page<ListRecordsResult>> {
+    const response = await this.axios.get(
+      `/collections/${collectionId}/records`,
+      { params: query, signal: options?.signal }
+    )
+
+    return response.data
+  }
+
+  /**
+   * Calls the `DELETE https://api.cogfy.com/collections/:collectionId/records` endpoint
+   * @param collectionId The collection id to delete a record.
+   * @param recordId The id of the record to be deleted
+   * @param options The request options.
+   * @returns The response body.
+   */
+  async deleteById (
+    collectionId: string,
+    recordId: string,
+    options?: { signal?: AbortSignal }
+  ): Promise<void> {
+    await this.axios.delete(
+      `/collections/${collectionId}/records/${recordId}`,
+      { signal: options?.signal }
+    )
+  }
 }
