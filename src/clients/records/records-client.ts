@@ -1,5 +1,14 @@
 import { AxiosInstance } from 'axios'
-import { CreateRecordCommand, CreateRecordResult, ListRecordsQuery, ListRecordsResult, UpdateRecordCommand, UpdateRecordResult } from './types'
+import {
+  CreateRecordCommand,
+  CreateRecordResult,
+  ListRecordsQuery,
+  ListRecordsQueryCommand,
+  ListRecordsQueryResult,
+  ListRecordsResult,
+  UpdateRecordCommand,
+  UpdateRecordResult
+} from './types'
 import { Page } from '../../types'
 
 export class RecordsClient {
@@ -68,6 +77,27 @@ export class RecordsClient {
     const response = await this.axios.get(
       `/collections/${collectionId}/records`,
       { params, signal: options?.signal }
+    )
+
+    return response.data
+  }
+
+  /**
+   * Calls the `GET https://api.cogfy.com/collections/:collectionId/records/query` endpoint
+   * @param collectionId The collection id to get records.
+   * @param data The request body.
+   * @param options The request options.
+   * @returns The response body.
+   */
+  async listQuery (
+    collectionId: string,
+    data: ListRecordsQueryCommand,
+    options?: { signal?: AbortSignal }
+  ): Promise<Page<ListRecordsQueryResult>> {
+    const response = await this.axios.post(
+      `/collections/${collectionId}/records/query`,
+      data,
+      { signal: options?.signal }
     )
 
     return response.data
