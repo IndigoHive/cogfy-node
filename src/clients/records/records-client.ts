@@ -83,7 +83,7 @@ export class RecordsClient {
   }
 
   /**
-   * Calls the `GET https://api.cogfy.com/collections/:collectionId/records/query` endpoint
+   * Calls the `POST https://api.cogfy.com/collections/:collectionId/records/query` endpoint
    * @param collectionId The collection id to get records.
    * @param data The request body.
    * @param options The request options.
