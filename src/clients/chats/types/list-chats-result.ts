@@ -1,8 +1,9 @@
 import { Page } from '../../../types'
 
-export type CollectionChatsResult = {
+export type ListChatsResultData = {
   id: string,
   fieldId: string | null,
   recordId: string | null
 }
-export type ListCollectionChatsResult = Page<CollectionChatsResult>
+
+export type ListChatsResult = Page<ListChatsResultData>

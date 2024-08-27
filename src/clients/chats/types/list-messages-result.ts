@@ -1,7 +1,8 @@
 import { ChatMessageRole, Page } from '../../../types'
 
-export type ChatMessagesResult = {
+export type ListMessagesResultData = {
   role: ChatMessageRole
   content: string | null
 }
-export type ListChatMessagesResult = Page<ChatMessagesResult>
+
+export type ListMessagesResult = Page<ListMessagesResultData>

@@ -1,5 +1,5 @@
 import { ChatMessageRole, Pagination } from '../../../types'
 
-export type ListChatMessagesQuery = Pagination & {
+export type ListMessagesQuery = Pagination & {
   roles?: ChatMessageRole[]
 }

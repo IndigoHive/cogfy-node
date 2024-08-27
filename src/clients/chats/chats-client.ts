@@ -1,5 +1,15 @@
 import { AxiosInstance } from 'axios'
-import { CreateChatCommand, CreateChatMessageCommand, CreateChatMessageResult, CreateChatResult, FindChatByIdResult, ListChatMessagesQuery, ListChatMessagesResult, ListCollectionChatsQuery, ListCollectionChatsResult } from '../chats'
+import {
+  CreateChatCommand,
+  CreateChatResult,
+  FindChatResult,
+  ListChatsQuery,
+  SendMessageResult,
+  ListMessagesResult,
+  SendMessageCommand,
+  ListMessagesQuery,
+} from '../chats'
+import { ListChatsResult } from './types/list-chats-result'
 
 export class ChatsClient {
   protected axios: AxiosInstance
@@ -29,6 +39,28 @@ export class ChatsClient {
     return response.data
   }
 
+
+  /**
+   * Calls the `GET https://api.cogfy.com/collections/:collectionId/chats/:chatId` endpoint
+   * @param collectionId The collection id.
+   * @param chatId The chat id.
+   * @param options The request options.
+   * @returns The response body.
+   */
+  async find (
+    collectionId: string,
+    chatId: string,
+    options?: { signal?: AbortSignal }
+  ): Promise<FindChatResult> {
+    const response = await this.axios.get<FindChatResult>(
+      `/collections/${collectionId}/chats/${chatId}`,
+      { signal: options?.signal }
+    )
+
+    return response.data
+  }
+
+
   /**
    * Calls the `GET https://api.cogfy.com/collections/:collectionId/chats` endpoint
    * @param collectionId The collection id.
@@ -38,32 +70,13 @@ export class ChatsClient {
    */
   async list (
     collectionId: string,
-    params?: ListCollectionChatsQuery,
+    params?: ListChatsQuery,
     options?: { signal?: AbortSignal }
-  ): Promise<ListCollectionChatsResult> {
-    const response = await this.axios.get<ListCollectionChatsResult>(`/collections/${collectionId}/chats`, {
-      params,
-      signal: options?.signal
-    })
-
-    return response.data
-  }
-
-  /**
-   * Calls the `GET https://api.cogfy.com/collections/:collectionId/chats/:chatId` endpoint
-   * @param collectionId The collection id.
-   * @param chatId The chat id.
-   * @param options The request options.
-   * @returns The response body.
-   */
-  async findById (
-    collectionId: string,
-    chatId: string,
-    options?: { signal?: AbortSignal }
-  ): Promise<FindChatByIdResult> {
-    const response = await this.axios.get<FindChatByIdResult>(
-      `/collections/${collectionId}/chats/${chatId}`,
-      { signal: options?.signal })
+  ): Promise<ListChatsResult> {
+    const response = await this.axios.get<ListChatsResult>(
+      `/collections/${collectionId}/chats`,
+      { params, signal: options?.signal }
+    )
 
     return response.data
   }
@@ -79,10 +92,10 @@ export class ChatsClient {
   async listMessages (
     collectionId: string,
     chatId: string,
-    params?: ListChatMessagesQuery,
+    params?: ListMessagesQuery,
     options?: { signal?: AbortSignal }
-  ): Promise<ListChatMessagesResult> {
-    const response = await this.axios.get<ListChatMessagesResult>(
+  ): Promise<ListMessagesResult> {
+    const response = await this.axios.get<ListMessagesResult>(
       `/collections/${collectionId}/chats/${chatId}/messages`,
       { params, signal: options?.signal }
     )
@@ -98,17 +111,18 @@ export class ChatsClient {
    * @param options The request options.
    * @returns The response body.
    */
-  async createMessage (
+  async sendMessage (
     collectionId: string,
     chatId: string,
-    data: CreateChatMessageCommand,
+    data: SendMessageCommand,
     options?: { signal?: AbortSignal }
-  ): Promise<CreateChatMessageResult> {
-    const response = await this.axios.post<CreateChatMessageResult>(
+  ): Promise<SendMessageResult> {
+    const response = await this.axios.post<SendMessageResult>(
       `/collections/${collectionId}/chats/${chatId}/messages`, {
       data,
       signal: options?.signal
     })
+
     return response.data
   }
 }
