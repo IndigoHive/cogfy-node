@@ -1,1 +1,1 @@
-export * from './get-collection-fields-page-result'
+export * from './list-fields-result'

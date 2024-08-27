@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios'
-import { GetCollectionFieldsResult } from './types'
+import { ListFieldsResult } from './types'
 
 export class FieldsClient {
   protected axios: AxiosInstance
@@ -14,14 +14,14 @@ export class FieldsClient {
    * @param params The request query parameters.
    * @param options The request options.
    */
-
-  async getPage (
+  async list (
     collectionId: string,
     options?: { signal?: AbortSignal }
-  ): Promise<GetCollectionFieldsResult[]> {
-    const response = await this.axios.get(`/collections/${collectionId}/fields`, {
-      signal: options?.signal
-    })
+  ): Promise<ListFieldsResult[]> {
+    const response = await this.axios.get<ListFieldsResult[]>(
+      `/collections/${collectionId}/fields`,
+      { signal: options?.signal }
+    )
 
     return response.data
   }

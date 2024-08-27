@@ -1,4 +1,4 @@
-export type GetCollectionFieldsResult = {
+export type ListFieldsResult = {
   id: string
   name: string
   type: string
