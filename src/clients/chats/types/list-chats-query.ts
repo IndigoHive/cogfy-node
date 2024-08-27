@@ -1,6 +1,6 @@
 import { Pagination } from '../../../types'
 
-export type ListCollectionChatsQuery = Pagination & {
+export type ListChatsQuery = Pagination & {
   fieldId?: string
   recordId?: string
 }

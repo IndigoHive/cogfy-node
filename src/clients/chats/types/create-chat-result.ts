@@ -1,15 +1,15 @@
-import { ChatMessageRole } from '../../../types'
+import { ChatMessageRole } from './chat-message-role'
 
-type ChatMessageResult = {
-  id: string,
+type ChatMessageResultData = {
+  id: string
   role: ChatMessageRole
   content: string
 }
 
 export type CreateChatResult = {
-  id: string,
-  collectionId: string,
-  fieldId: string,
-  recordId: string,
-  messages: ChatMessageResult[]
+  id: string
+  collectionId: string
+  fieldId: string
+  recordId: string
+  messages: ChatMessageResultData[]
 }

@@ -2,7 +2,7 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import { randomUUID } from 'crypto'
 import { describe, expect, test } from 'vitest'
-import { ListChatMessagesQuery, ListChatMessagesResult } from './types'
+import { ListMessagesQuery, ListMessagesResult } from './types'
 import { Cogfy } from '../../cogfy'
 
 describe('chats', () => {
@@ -12,12 +12,12 @@ describe('chats', () => {
       const cogfy = new Cogfy()
       const collectionId = randomUUID()
       const chatId = randomUUID()
-      const params: ListChatMessagesQuery = {
+      const params: ListMessagesQuery = {
         roles: ['assistant', 'user']
       }
       mock
         .onGet(`https://api.cogfy.com/collections/${collectionId}/chats/${chatId}/messages`, { params })
-        .replyOnce<ListChatMessagesResult>(200, { data: [], pageNumber: 0, pageSize: 10, totalSize: 0 })
+        .replyOnce<ListMessagesResult>(200, { data: [], pageNumber: 0, pageSize: 10, totalSize: 0 })
 
       const response = await cogfy.chats.listMessages(collectionId, chatId, params)
 

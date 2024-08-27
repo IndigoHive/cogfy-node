@@ -1,4 +1,10 @@
-import { ChatMessageRole, DatabaseRecordProperty } from '../../../types'
+import { ChatMessageRole } from './chat-message-role'
+import { BooleanRecordProperty, NumberRecordProperty, TextRecordProperty } from '../../records'
+
+type CreateRecordProperty =
+  BooleanRecordProperty |
+  NumberRecordProperty |
+  TextRecordProperty
 
 type ChatMessage = {
   role: ChatMessageRole
@@ -8,6 +14,6 @@ type ChatMessage = {
 export type CreateChatCommand = {
   fieldId: string
   recordId?: string | null
-  properties?: Record<string, DatabaseRecordProperty> | null
+  properties?: Record<string, CreateRecordProperty> | null
   messages?: ChatMessage[] | null
 }
