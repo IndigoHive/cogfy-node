@@ -1,5 +1,10 @@
 import { ChatMessageRole } from './chat-message-role'
-import { CreateRecordProperty } from '../../records'
+import { BooleanRecordProperty, NumberRecordProperty, TextRecordProperty } from '../../records'
+
+type CreateRecordProperty =
+  BooleanRecordProperty |
+  NumberRecordProperty |
+  TextRecordProperty
 
 type ChatMessage = {
   role: ChatMessageRole
