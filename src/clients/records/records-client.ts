@@ -1,6 +1,12 @@
 import { AxiosInstance } from 'axios'
-import { CreateRecordCommand, CreateRecordResult, ListRecordsQuery, ListRecordsResult, UpdateRecordCommand, UpdateRecordResult } from './types'
-import { Page } from '../../types'
+import {
+  CreateRecordCommand,
+  CreateRecordResult,
+  ListRecordsQuery,
+  ListRecordsResult,
+  UpdateRecordCommand,
+  UpdateRecordResult
+} from './types'
 
 export class RecordsClient {
   protected axios: AxiosInstance
@@ -31,26 +37,21 @@ export class RecordsClient {
   }
 
   /**
-   * Calls the `PATCH https://api.cogfy.com/collections/:collectionId/records/:recordId` endpoint
-   * @param collectionId The collection id to update a record.
-   * @param recordId The id of the record to be updated
-   * @param data The request body.
+   * Calls the `DELETE https://api.cogfy.com/collections/:collectionId/records` endpoint
+   * @param collectionId The collection id to delete a record.
+   * @param recordId The id of the record to be deleted
    * @param options The request options.
    * @returns The response body.
    */
-  async updateById (
+  async delete (
     collectionId: string,
     recordId: string,
-    data: UpdateRecordCommand,
     options?: { signal?: AbortSignal }
-  ): Promise<UpdateRecordResult> {
-    const response = await this.axios.patch(
+  ): Promise<void> {
+    await this.axios.delete(
       `/collections/${collectionId}/records/${recordId}`,
-      data,
       { signal: options?.signal }
     )
-
-    return response.data
   }
 
   /**
@@ -64,7 +65,7 @@ export class RecordsClient {
     collectionId: string,
     params: ListRecordsQuery = {},
     options?: { signal?: AbortSignal }
-  ): Promise<Page<ListRecordsResult>> {
+  ): Promise<ListRecordsResult> {
     const response = await this.axios.get(
       `/collections/${collectionId}/records`,
       { params, signal: options?.signal }
@@ -74,20 +75,25 @@ export class RecordsClient {
   }
 
   /**
-   * Calls the `DELETE https://api.cogfy.com/collections/:collectionId/records` endpoint
-   * @param collectionId The collection id to delete a record.
-   * @param recordId The id of the record to be deleted
+   * Calls the `PATCH https://api.cogfy.com/collections/:collectionId/records/:recordId` endpoint
+   * @param collectionId The collection id to update a record.
+   * @param recordId The id of the record to be updated
+   * @param data The request body.
    * @param options The request options.
    * @returns The response body.
    */
-  async deleteById (
+  async update (
     collectionId: string,
     recordId: string,
+    data: UpdateRecordCommand,
     options?: { signal?: AbortSignal }
-  ): Promise<void> {
-    await this.axios.delete(
+  ): Promise<UpdateRecordResult> {
+    const response = await this.axios.patch(
       `/collections/${collectionId}/records/${recordId}`,
+      data,
       { signal: options?.signal }
     )
+
+    return response.data
   }
 }
