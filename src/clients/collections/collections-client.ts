@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios'
-import { GetCollectionByIdResult, ListCollectionsQuery, ListCollectionsResult } from './types'
+import { FindCollectionResult, ListCollectionsQuery, ListCollectionsResult } from './types'
 
 export class CollectionsClient {
   protected axios: AxiosInstance
@@ -14,11 +14,11 @@ export class CollectionsClient {
    * @param options The request options.
    * @returns The response body.
    */
-  async getById (
+  async find (
     collectionId: string,
     options?: { signal?: AbortSignal }
-  ): Promise<GetCollectionByIdResult> {
-    const response = await this.axios.get<GetCollectionByIdResult>(
+  ): Promise<FindCollectionResult> {
+    const response = await this.axios.get<FindCollectionResult>(
       `/collections/${collectionId}`,
       { signal: options?.signal }
     )
