@@ -1,4 +1,4 @@
-import { ChatMessageRole } from '../../../types'
+import { ChatMessageRole } from './chat-message-role'
 import { CreateRecordProperty } from '../../records'
 
 type ChatMessage = {

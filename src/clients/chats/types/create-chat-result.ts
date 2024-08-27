@@ -1,4 +1,4 @@
-import { ChatMessageRole } from '../../../types'
+import { ChatMessageRole } from './chat-message-role'
 
 type ChatMessageResultData = {
   id: string
