@@ -56,6 +56,15 @@ export type StopwatchRecordProperty = BaseRecordProperty & {
   }
 }
 
+export type SelectRecordProperty = BaseRecordProperty & {
+  type: 'select'
+  select: {
+    value: {
+      id: string
+    }[]
+  }
+}
+
 export type TextRecordProperty = BaseRecordProperty & {
   type: 'text'
   text: {
@@ -85,6 +94,7 @@ export type RecordProperty =
   JsonRecordProperty |
   NumberRecordProperty |
   ReferenceRecordProperty |
+  SelectRecordProperty |
   StopwatchRecordProperty |
   TextRecordProperty |
   VectorRecordProperty |
