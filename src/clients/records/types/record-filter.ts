@@ -2,7 +2,7 @@ export type EqualsFilter = {
   type: 'equals'
   equals: {
     fieldId: string
-    value: string | number | boolean
+    value: string | number | boolean | string[]
   }
 }
 
@@ -10,7 +10,7 @@ export type NotEqualsFilter = {
   type: 'notEquals'
   notEquals: {
     fieldId: string
-    value: string | number | boolean
+    value: string | number | boolean | string[]
   }
 }
 
