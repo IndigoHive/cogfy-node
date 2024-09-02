@@ -20,7 +20,7 @@ describe('fields-client', () => {
         const mockData: ListFieldsResult = {
           id: '1',
           name: 'name',
-          type: 'type',
+          type: 'author',
           order: 1,
           data: {},
           operation: 'operation',
