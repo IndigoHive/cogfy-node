@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios'
 import {
   CreateRecordCommand,
   CreateRecordResult,
+  FindRecordResult,
   ListRecordsQuery,
   ListRecordsResult,
   QueryRecordsCommand,
@@ -51,6 +52,24 @@ export class RecordsClient {
     options?: { signal?: AbortSignal }
   ): Promise<void> {
     await this.axios.delete(
+      `/collections/${collectionId}/records/${recordId}`,
+      { signal: options?.signal }
+    )
+  }
+
+  /**
+   * Calls the `GET https://api.cogfy.com/collections/:collectionId/records/:recordId` endpoint
+   * @param collectionId The collection id to get the record.
+   * @param recordId The record id to get.
+   * @param options The request options.
+   * @returns The response body.
+   */
+  async find (
+    collectionId: string,
+    recordId: string,
+    options?: { signal?: AbortSignal }
+  ): Promise<FindRecordResult> {
+    return await this.axios.get(
       `/collections/${collectionId}/records/${recordId}`,
       { signal: options?.signal }
     )
