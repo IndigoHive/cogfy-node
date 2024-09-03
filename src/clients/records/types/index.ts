@@ -1,5 +1,6 @@
 export * from './create-record-command'
 export * from './create-record-result'
+export * from './find-record-result'
 export * from './list-records-query'
 export * from './list-records-result'
 export * from './query-records-command'
