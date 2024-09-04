@@ -123,6 +123,13 @@ export type TextRecordProperty = BaseRecordProperty & {
   }
 }
 
+export type UpdateDateRecordProperty = BaseRecordProperty & {
+  type: 'updateDate'
+  updateDate: {
+    value: string
+  }
+}
+
 export type VectorRecordProperty = BaseRecordProperty & {
   type: 'vector'
   vector: {
@@ -162,5 +169,6 @@ export type RecordProperty =
   SelectRecordProperty |
   StopwatchRecordProperty |
   TextRecordProperty |
+  UpdateDateRecordProperty |
   VectorRecordProperty |
   WhatsAppRecordProperty
