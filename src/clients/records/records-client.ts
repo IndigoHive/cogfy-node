@@ -69,10 +69,12 @@ export class RecordsClient {
     recordId: string,
     options?: { signal?: AbortSignal }
   ): Promise<FindRecordResult> {
-    return await this.axios.get(
+    const response = await this.axios.get(
       `/collections/${collectionId}/records/${recordId}`,
       { signal: options?.signal }
     )
+
+    return response.data
   }
 
   /**
