@@ -14,5 +14,5 @@ export type QueryRecordsCommandOrderBy = {
 
 export type QueryRecordsCommand = {
   filter?: QueryRecordsCommandFilter | null
-  orderBy?: QueryRecordsCommandOrderBy | null
+  orderBy?: QueryRecordsCommandOrderBy[] | null
 }
