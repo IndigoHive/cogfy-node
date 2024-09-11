@@ -118,10 +118,10 @@ export class ChatsClient {
     options?: { signal?: AbortSignal }
   ): Promise<SendMessageResult> {
     const response = await this.axios.post<SendMessageResult>(
-      `/collections/${collectionId}/chats/${chatId}/messages`, {
+      `/collections/${collectionId}/chats/${chatId}/messages`,
       data,
-      signal: options?.signal
-    })
+      { signal: options?.signal }
+    )
 
     return response.data
   }
