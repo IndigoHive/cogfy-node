@@ -35,7 +35,7 @@ export class FilesClient {
     const headers = { 'Content-Type': 'multipart/form-data' }
 
     await this.axios.post(signedUrl, s3Data, { headers })
-    await this.axios.post(`/collections/${collectionId}/files/${fileId}/complete-upload`)
+    await this.axios.patch(`/collections/${collectionId}/files/${fileId}/complete-upload`)
 
     return {
       id: fileId,
