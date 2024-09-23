@@ -30,15 +30,18 @@ export class FilesClient {
 
     const uploadFileResponse = await this.axios.post(`/collections/${collectionId}/files`, uploadFileData)
 
-    const { fields, fileId, signedUrl, recordId } = uploadFileResponse.data
-    const s3Data = { ...fields, file: data.file }
+    const { fields, id, signedUrl, recordId } = uploadFileResponse.data
     const headers = { 'Content-Type': 'multipart/form-data' }
+    const formData = new FormData()
 
-    await this.axios.post(signedUrl, s3Data, { headers })
-    await this.axios.patch(`/collections/${collectionId}/files/${fileId}/complete-upload`)
+    Object.entries(fields).forEach(([field, value]) => formData.append(field, value as string))
+    formData.append('file', data.file)
+
+    await this.axios.post(signedUrl, formData, { headers })
+    await this.axios.patch(`/collections/${collectionId}/files/${id}/complete-upload`)
 
     return {
-      id: fileId,
+      id,
       recordId
     }
   }
