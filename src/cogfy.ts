@@ -4,6 +4,7 @@ import { ChatsClient, CollectionsClient, FieldsClient, FilesClient, RecordsClien
 
 export type CogfyOptions = {
   apiKey?: string
+  url?: string
 }
 
 export class Cogfy {
@@ -19,7 +20,7 @@ export class Cogfy {
   constructor (options: CogfyOptions = {}) {
     this._options = options
     this._axios = axios.create({
-      baseURL: 'https://api.cogfy.com',
+      baseURL: this._options.url ?? 'https://api.cogfy.com',
       headers: {
         'Api-Key': this._options.apiKey
       },
