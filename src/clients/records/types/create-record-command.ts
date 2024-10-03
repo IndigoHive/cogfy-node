@@ -1,6 +1,7 @@
 import {
   BooleanRecordProperty,
   DateRecordProperty,
+  JsonRecordProperty,
   NumberRecordProperty,
   SelectRecordProperty,
   TextRecordProperty
@@ -9,6 +10,7 @@ import {
 export type CreateRecordProperty =
   BooleanRecordProperty |
   DateRecordProperty |
+  JsonRecordProperty |
   NumberRecordProperty |
   SelectRecordProperty |
   TextRecordProperty
