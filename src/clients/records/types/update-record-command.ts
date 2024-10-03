@@ -1,8 +1,16 @@
-import { BooleanRecordProperty, DateRecordProperty, NumberRecordProperty, SelectRecordProperty, TextRecordProperty } from './record-property';
+import {
+  BooleanRecordProperty,
+  DateRecordProperty,
+  JsonRecordProperty,
+  NumberRecordProperty,
+  SelectRecordProperty,
+  TextRecordProperty
+} from './record-property'
 
 export type UpdateRecordProperty =
   BooleanRecordProperty |
   DateRecordProperty |
+  JsonRecordProperty |
   NumberRecordProperty |
   SelectRecordProperty |
   TextRecordProperty
