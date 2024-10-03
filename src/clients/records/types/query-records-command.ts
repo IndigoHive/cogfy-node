@@ -13,6 +13,7 @@ export type QueryRecordsCommandOrderBy = {
 }
 
 export type QueryRecordsCommand = {
+  recordIds?: string[]
   filter?: QueryRecordsCommandFilter | null
   orderBy?: QueryRecordsCommandOrderBy[] | null
 }
