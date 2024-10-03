@@ -26,7 +26,8 @@ export class Cogfy {
       },
       paramsSerializer: {
         serialize: params => qs.stringify(params, { arrayFormat: 'repeat' })
-      }
+      },
+      withCredentials: true
     })
 
     this.chats = new ChatsClient({ axios: this._axios })
