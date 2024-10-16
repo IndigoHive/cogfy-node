@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios'
 import qs from 'qs'
 import { ChatsClient, CollectionsClient, FieldsClient, FilesClient, RecordsClient } from './clients'
+import { CogfyError } from './cogfy-error'
 
 export type CogfyOptions = {
   apiKey?: string
@@ -29,6 +30,21 @@ export class Cogfy {
       },
       withCredentials: true
     })
+
+    this._axios.interceptors.response.use(
+      value => value,
+      error => {
+        if (axios.isAxiosError(error) && error.response?.data?.message) {
+          throw new CogfyError(
+            error.response.data.message,
+            error.response.status,
+            error.response.data
+          )
+        }
+
+        return error
+      }
+    )
 
     this.chats = new ChatsClient({ axios: this._axios })
     this.collections = new CollectionsClient({ axios: this._axios })
