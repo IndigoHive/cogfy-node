@@ -3,4 +3,5 @@ import { Pagination } from '../../../types'
 
 export type ListMessagesQuery = Pagination & {
   roles?: ChatMessageRole[]
+  sendDateOrderBy?: 'asc' | 'desc'
 }
