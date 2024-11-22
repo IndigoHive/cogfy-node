@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios'
 import {
+  CalculateRecordsCommand,
   CreateRecordCommand,
   CreateRecordResult,
   FindRecordResult,
@@ -16,6 +17,25 @@ export class RecordsClient {
 
   constructor(options: { axios: AxiosInstance }) {
     this.axios = options.axios
+  }
+
+  /**
+   * Calls the `POST https://api.cogfy.com/collections/:collectionId/records/calculate` endpoint
+   * @param collectionId The collection id to calculate records.
+   * @param data The request body.
+   * @param options The request options.
+   * @returns The response body.
+   */
+  async calculate (
+    collectionId: string,
+    data: CalculateRecordsCommand,
+    options?: { signal?: AbortSignal }
+  ): Promise<void> {
+    await this.axios.post(
+      `/collections/${collectionId}/records/calculate`,
+      data,
+      { signal: options?.signal }
+    )
   }
 
   /**
