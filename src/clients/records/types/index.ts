@@ -1,3 +1,4 @@
+export * from './calculate-records-command'
 export * from './create-record-command'
 export * from './create-record-result'
 export * from './find-record-result'
