@@ -97,6 +97,18 @@ export type ReferenceRecordProperty = BaseRecordProperty & {
   }
 }
 
+export type ScheduleRecordProperty = BaseRecordProperty & {
+  type: 'schedule'
+  schedule?: {
+    value?: {
+      startDate: string
+      nextDate: string
+      interval: number
+      unit: string
+    } | null
+  }
+}
+
 export type SelectRecordProperty = BaseRecordProperty & {
   type: 'select'
   select: {
@@ -166,6 +178,7 @@ export type RecordProperty =
   JsonRecordProperty |
   NumberRecordProperty |
   ReferenceRecordProperty |
+  ScheduleRecordProperty |
   SelectRecordProperty |
   StopwatchRecordProperty |
   TextRecordProperty |
