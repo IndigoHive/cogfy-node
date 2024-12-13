@@ -3,6 +3,7 @@ import {
   DateRecordProperty,
   JsonRecordProperty,
   NumberRecordProperty,
+  ScheduleRecordProperty,
   SelectRecordProperty,
   TextRecordProperty
 } from './record-property'
@@ -12,6 +13,7 @@ export type CreateRecordProperty =
   DateRecordProperty |
   JsonRecordProperty |
   NumberRecordProperty |
+  ScheduleRecordProperty |
   SelectRecordProperty |
   TextRecordProperty
 
