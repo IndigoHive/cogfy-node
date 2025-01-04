@@ -17,8 +17,8 @@ export class FieldsClient {
   async list (
     collectionId: string,
     options?: { signal?: AbortSignal }
-  ): Promise<ListFieldsResult[]> {
-    const response = await this.axios.get<ListFieldsResult[]>(
+  ): Promise<ListFieldsResult> {
+    const response = await this.axios.get<ListFieldsResult>(
       `/collections/${collectionId}/fields`,
       { signal: options?.signal }
     )

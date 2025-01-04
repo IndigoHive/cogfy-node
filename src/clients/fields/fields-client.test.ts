@@ -18,13 +18,14 @@ describe('fields-client', () => {
       test('should return data', async () => {
         const collectionId = '1'
         const mockData: ListFieldsResult = {
-          id: '1',
-          name: 'name',
-          type: 'author',
-          order: 1,
-          data: {},
-          operation: 'operation',
-          operationConfig: {}
+          data: [
+            {
+              id: '1',
+              name: 'name',
+              type: 'author',
+              operation: 'operation'
+            }
+          ]
         }
         const mockResponse: ListFieldsResult[] = [mockData]
         mock
