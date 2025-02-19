@@ -1,4 +1,5 @@
-type Bytes = number
+import { Bytes } from '../../../types'
+
 type MimeType =
   'audio/aac' |
   'audio/mpeg' |

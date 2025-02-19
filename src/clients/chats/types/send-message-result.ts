@@ -1,4 +1,4 @@
-type Bytes = number
+import { Bytes } from '../../../types'
 
 export type SendMessageResult = {
   id: string
