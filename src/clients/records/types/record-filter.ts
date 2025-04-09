@@ -3,6 +3,7 @@ export type EqualsFilter = {
   equals: {
     fieldId: string
     value: string | number | boolean | string[]
+    fieldProperty?: string | null
   }
 }
 
@@ -11,6 +12,7 @@ export type NotEqualsFilter = {
   notEquals: {
     fieldId: string
     value: string | number | boolean | string[]
+    fieldProperty?: string | null
   }
 }
 
@@ -27,6 +29,7 @@ export type IsEmptyFilter = {
   isEmpty: {
     fieldId: string
     value: boolean
+    fieldProperty?: string | null
   }
 }
 
@@ -43,6 +46,7 @@ export type LessThanFilter = {
   lessThan: {
     fieldId: string
     value: string | number
+    fieldProperty?: string | null
   }
 }
 
@@ -51,6 +55,7 @@ export type LessThanOrEqualsFilter = {
   lessThan: {
     fieldId: string
     value: string | number
+    fieldProperty?: string | null
   }
 }
 
@@ -67,6 +72,7 @@ export type GreaterThanOrEqualsFilter = {
   greaterThan: {
     fieldId: string
     value: string | number
+    fieldProperty?: string | null
   }
 }
 
