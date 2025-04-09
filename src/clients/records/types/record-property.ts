@@ -23,6 +23,26 @@ export type BooleanRecordProperty = BaseRecordProperty & {
   }
 }
 
+export type ChatMessageRecordProperty = BaseRecordProperty & {
+  type: 'chatMessage'
+  chatMessage: {
+    value?: {
+      id: string
+      content: string | null
+      contentType: string
+      sendDate: Date
+      status: string | null
+      contentData?: object | null
+      externalId?: string | null
+      scheduleDate?: Date | null
+      chat?: {
+        id?: string | null
+        externalId?: string | null
+      }
+    } | null
+  }
+}
+
 export type ChatRecordProperty = BaseRecordProperty & {
   type: 'chat'
   chat: {
@@ -37,6 +57,17 @@ export type ChatRecordProperty = BaseRecordProperty & {
         }
         sendDate?: string
       }
+    } | null
+  }
+}
+
+export type ConnectionRecordProperty = BaseRecordProperty & {
+  type: 'connection'
+  connection?: {
+    value?: {
+      id: string
+      name: string
+      provider: string
     } | null
   }
 }
@@ -71,6 +102,18 @@ export type FileRecordProperty = BaseRecordProperty & {
   }
 }
 
+export type HttpResponseRecordProperty = BaseRecordProperty & {
+  type: 'httpResponse'
+  httpResponse: {
+    value?: {
+      status?: number | null
+      body?: string | null
+      duration?: number
+      error?: JSON | null
+    } | null
+  }
+}
+
 export type JsonRecordProperty = BaseRecordProperty & {
   type: 'json'
   json: {
@@ -79,10 +122,37 @@ export type JsonRecordProperty = BaseRecordProperty & {
   }
 }
 
+export type LastEditorRecordProperty = BaseRecordProperty & {
+  type: 'lastEditor'
+  lastEditor?: {
+    value?: {
+      id: string
+      name: string
+    } | null
+  }
+}
+
 export type NumberRecordProperty = BaseRecordProperty & {
   type: 'number'
   number: {
     value: number | null
+  }
+}
+
+export type NuvemFiscalNfseRecordProperty = BaseRecordProperty & {
+  type: 'nuvemFiscal.nfse'
+  'nuvemFiscal.nfse': {
+    value?: {
+      id: string
+      externalId: string
+      serviceBuyerCpf?: string | null
+      serviceBuyerCnpj?: string | null
+      serviceProviderCpf?: string | null
+      serviceProviderCnpj?: string | null
+      serviceValue?: number | null
+      issueDate?: string | null
+      status?: string | null
+    }
   }
 }
 
@@ -109,6 +179,16 @@ export type ScheduleRecordProperty = BaseRecordProperty & {
   }
 }
 
+export type SendgridInboundEmailRecordProperty = BaseRecordProperty & {
+  type: 'sendgrid.inboundEmail'
+  'sendgrid.inboundEmail': {
+    subject: string | null
+    from: string
+    to: string
+    createDate: string
+  }
+}
+
 export type SelectRecordProperty = BaseRecordProperty & {
   type: 'select'
   select: {
@@ -125,6 +205,14 @@ export type StopwatchRecordProperty = BaseRecordProperty & {
       startDate?: string | null
       elapsed?: number | null
     }
+  }
+}
+
+export type StripeCustomerRecordProperty = BaseRecordProperty & {
+  type: 'stripe.customer'
+  'stripe.customer': {
+    externalId: string
+    name: string
   }
 }
 
@@ -151,37 +239,62 @@ export type VectorRecordProperty = BaseRecordProperty & {
   }
 }
 
-export type WhatsAppRecordProperty = BaseRecordProperty & {
-  type: 'whatsApp'
-  whatsApp?: {
-    value?: {
-      phoneNumber?: string
-      chatId?: string
-      lastMessage?: {
-        content?: string
-        role?: string
-        user?: {
-          id: string
-          name: string
-        }
-        sendDate?: string
-      }
-    } | null
+export type VindiBillRecordProperty = BaseRecordProperty & {
+  type: 'vindi.bill'
+  'vindi.bill': {
+    id: string
+    amount: number
+    currency: string
+    externalId: number
+    status: string
+    dueDate: string
+  }
+}
+
+export type VindiCustomerRecordProperty = BaseRecordProperty & {
+  type: 'vindi.customer'
+  'vindi.customer': {
+    id: string
+    name: string
+    status: string
+    externalId: number
+  }
+}
+
+export type VindiSubscriptionRecordProperty = BaseRecordProperty & {
+  type: 'vindi.subscription'
+  'vindi.subscription': {
+    id: string
+    planId: number
+    status: string
+    paymentMethod: string
+    externalId: number
   }
 }
 
 export type RecordProperty =
+  AuthorRecordProperty |
   BooleanRecordProperty |
+  ChatMessageRecordProperty |
   ChatRecordProperty |
+  ConnectionRecordProperty |
+  CreateDateRecordProperty |
   DateRecordProperty |
   FileRecordProperty |
+  HttpResponseRecordProperty |
   JsonRecordProperty |
+  LastEditorRecordProperty |
   NumberRecordProperty |
+  NuvemFiscalNfseRecordProperty |
   ReferenceRecordProperty |
   ScheduleRecordProperty |
+  SendgridInboundEmailRecordProperty |
   SelectRecordProperty |
   StopwatchRecordProperty |
+  StripeCustomerRecordProperty |
   TextRecordProperty |
   UpdateDateRecordProperty |
   VectorRecordProperty |
-  WhatsAppRecordProperty
+  VindiBillRecordProperty |
+  VindiCustomerRecordProperty
+
