@@ -1,11 +1,32 @@
 import { AxiosInstance } from 'axios'
-import { ListFieldsResult } from './types'
+import { CreateFieldCommand, CreateFieldResult, ListFieldsResult } from './types'
 
 export class FieldsClient {
   protected axios: AxiosInstance
 
   constructor (options: { axios: AxiosInstance }) {
     this.axios = options.axios
+  }
+
+  /**
+   * Calls the `POST https://api.cogfy.com/collections/:collectionId/fields` endpoint
+   * @param collectionId The collection id.
+   * @param data The request body.
+   * @param options The request options.
+   * @returns The response body.
+   */
+  async create (
+    collectionId: string,
+    data: CreateFieldCommand,
+    options?: { signal?: AbortSignal }
+  ): Promise<CreateFieldResult> {
+    const response = await this.axios.post<CreateFieldResult>(
+      `/collections/${collectionId}/fields`,
+      data,
+      { signal: options?.signal }
+    )
+
+    return response.data
   }
 
   /**
