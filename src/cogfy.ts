@@ -5,6 +5,7 @@ import { CogfyError } from './cogfy-error'
 
 export type CogfyOptions = {
   apiKey?: string
+  appId?: string
   baseURL?: string
 }
 
@@ -23,7 +24,8 @@ export class Cogfy {
     this._axios = axios.create({
       baseURL: this._options.baseURL ?? 'https://api.cogfy.com',
       headers: {
-        'Api-Key': this._options.apiKey
+        'Api-Key': this._options.apiKey,
+        'App-Id': this._options.appId
       },
       paramsSerializer: {
         serialize: params => qs.stringify(params, { arrayFormat: 'repeat' })
