@@ -1,6 +1,7 @@
 export * from './create-chat-command'
 export * from './create-chat-result'
 export * from './find-chat-result'
+export * from './find-message-result'
 export * from './list-chats-query'
 export * from './list-chats-result'
 export * from './list-messages-query'

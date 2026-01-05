@@ -3,6 +3,7 @@ import {
   CreateChatCommand,
   CreateChatResult,
   FindChatResult,
+  FindMessageResult,
   ListChatsQuery,
   SendMessageResult,
   ListMessagesResult,
@@ -98,6 +99,28 @@ export class ChatsClient {
     const response = await this.axios.get<ListMessagesResult>(
       `/collections/${collectionId}/chats/${chatId}/messages`,
       { params, signal: options?.signal }
+    )
+
+    return response.data
+  }
+
+  /**
+   * Calls the `GET https://api.cogfy.com/collections/:collectionId/chats/:chatId/messages/:chatMessageId` endpoint
+   * @param collectionId The collection id.
+   * @param chatId The chat id.
+   * @param chatMessageId The message id to retrieve.
+   * @param options The request options.
+   * @returns The response body.
+   */
+  async findMessage (
+    collectionId: string,
+    chatId: string,
+    chatMessageId: string,
+    options?: { signal?: AbortSignal }
+  ): Promise<FindMessageResult> {
+    const response = await this.axios.get<FindMessageResult>(
+      `/collections/${collectionId}/chats/${chatId}/messages/${chatMessageId}`,
+      { signal: options?.signal }
     )
 
     return response.data
